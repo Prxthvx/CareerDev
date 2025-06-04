@@ -15,9 +15,8 @@ A modern web application that helps users navigate their career development jour
 
 - Next.js 14 with TypeScript
 - Tailwind CSS for styling
-- Prisma for database management
-- NextAuth.js for authentication
-- Headless UI for accessible components
+- Google's Generative AI for AI features
+- OpenAI API integration
 - Heroicons for icons
 
 ## Getting Started
@@ -31,11 +30,7 @@ A modern web application that helps users navigate their career development jour
    ```bash
    cp .env.example .env.local
    ```
-4. Initialize the database:
-   ```bash
-   npx prisma db push
-   ```
-5. Run the development server:
+4. Run the development server:
    ```bash
    npm run dev
    ```
@@ -46,8 +41,7 @@ A modern web application that helps users navigate their career development jour
 src/
 ├── app/              # Next.js app directory
 ├── components/       # Reusable UI components
-├── lib/             # Utility functions and configurations
-├── prisma/          # Database schema and migrations
+├── services/        # API and service integrations
 └── types/           # TypeScript type definitions
 ```
 
