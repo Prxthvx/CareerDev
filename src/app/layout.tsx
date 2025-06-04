@@ -20,7 +20,6 @@ export default function RootLayout({
     setMounted(true);
   }, []);
 
-  // Hide Navigation on landing and career guide pages
   const hideNav = pathname === '/' || pathname === '/career-guide';
 
   return (

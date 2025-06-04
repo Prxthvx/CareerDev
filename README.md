@@ -1,4 +1,4 @@
-# AI-Powered Career Development Platform
+# Career Development Platform
 
 A modern web application that helps users navigate their career development journey using AI-powered insights and personalized learning paths.
 
@@ -50,10 +50,6 @@ src/
 ├── prisma/          # Database schema and migrations
 └── types/           # TypeScript type definitions
 ```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 

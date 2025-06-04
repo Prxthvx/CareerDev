@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';  
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
@@ -71,7 +71,6 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="sm:hidden">
           <div className="space-y-1 pb-3 pt-2">

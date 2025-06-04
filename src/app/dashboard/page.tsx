@@ -11,9 +11,31 @@ export default function Dashboard() {
   }, []);
   const name = student?.name || 'Student';
   // Placeholder gamification data
-  const points = 1200;
   const badges = ['Beginner', 'Streak 7 Days'];
   const progress = 60;
+
+  function calculatePoints() {
+    let points = 0;
+    // Skill assessment: 10 points per skill rated > 0
+    const skills = JSON.parse(localStorage.getItem('careerdev_skillAssessment') || '[]');
+    skills.forEach((cat: any) => cat.skills.forEach((s: any) => { if (s.level > 0) points += 10; }));
+    // Learning paths: 20 points per path enrolled, +1 per % progress
+    const paths = JSON.parse(localStorage.getItem('careerdev_learningPaths') || '[]');
+    paths.forEach((p: any) => { if (p.isEnrolled) points += 20 + (p.progress || 0); });
+    // Challenges: 30 points per completed
+    const chals = JSON.parse(localStorage.getItem('careerdev_challenges') || '[]');
+    chals.forEach((c: any) => { if (c.complete) points += 30; });
+    return points;
+  }
+  const [points, setPoints] = useState(0);
+  useEffect(() => { setPoints(calculatePoints()); }, []);
+  const leaderboard = [
+    { name: 'Aditi', points: 1450 },
+    { name: 'Rahul', points: 1320 },
+    { name: 'Student', points },
+    { name: 'Priya', points: 1100 },
+  ].sort((a, b) => b.points - a.points);
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-br from-[#0f3443] via-[#34e89e] to-[#43cea2] relative overflow-hidden py-12">
       <div className="w-full max-w-4xl mx-auto z-10">
@@ -65,6 +87,14 @@ export default function Dashboard() {
               <Link href="/mentors" className="rounded-lg border border-blue-400 px-6 py-2 text-blue-700 font-bold shadow hover:bg-blue-50 transition-colors flex items-center gap-2">
                 <AcademicCapIcon className="h-5 w-5 text-blue-500" /> Find a Mentor
               </Link>
+            </div>
+          </div>
+          <div className="w-full mt-8">
+            <h3 className="text-lg font-bold text-indigo-700 mb-2">Leaderboard</h3>
+            <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 flex flex-col gap-2">
+              {leaderboard.map((u, i) => (
+                <div key={u.name} className={`flex justify-between items-center ${u.name === 'Student' ? 'font-bold text-indigo-700' : 'text-gray-700'}`}> <span>{i + 1}. {u.name}</span> <span>{u.points} pts</span> </div>
+              ))}
             </div>
           </div>
         </div>
